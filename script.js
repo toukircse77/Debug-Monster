@@ -1,15 +1,15 @@
-const display = document.getElementById("display");
-const question = document.getElementById("question");
-const startBtn = document.getElementById("starts");
-const countdownOverlay = document.getElementById("countdown");
-const resultModal = document.getElementById("result");
-const modalBackground = document.getElementById("modal-background");
+const display = document.getElementById('display');
+const question = document.getElementById('question');
+const startBtn = document.getElementById('starts');
+const countdownOverlay = document.getElementById('countdown');
+const resultModal = document.getElementById('result');
+const modalBackground = document.getElementById('modal-background');
 
 // variables
-let userText = "";
+let userText = '';
 let errorCount = 0;
 let startTime;
-let questionText = "";
+let questionText = '';
 
 // Load and display question
 fetch('./texts.json')
@@ -24,14 +24,14 @@ const typeController = (e) => {
   const newLetter = e.key;
 
   // Handle backspace press
-  if (newLetter == "Backspace") {
+  if (newLetter == 'Backspace') {
     userText = userText.slice(0, userText.length - 1);
     return display.removeChild(display.lastChild);
   }
 
   // these are the valid character we are allowing to type
   const validLetters =
-    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890!@#$%^&*()_+-={}[]'\".,?";
+    'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890!@#$%^&*()_+-={}[]\'".,?';
 
   // if it is not a valid character like Control/Alt then skip displaying anything
   if (!validLetters.includes(newLetter)) {
@@ -68,20 +68,20 @@ const validate = (key) => {
 
 // FINISHED TYPING
 const gameOver = () => {
-  document.removeEventListener("keydown", typeController);
+  document.removeEventListener('keydown', typeController);
   // the current time is the finish time
   // so total time taken is current time - start time
   const finishTime = new Date().getTime();
-  const timeTaken = Math.floor(finishTime - startTime) / 1000;
+  const timeTaken = Math.floor((finishTime - startTime) / 1000);
 
   // show result modal
-  resultModal.innerHTML = "";
-  resultModal.classList.toggle("hidden");
-  modalBackground.classList.toggle("hidden");
+  resultModal.innerHTML = '';
+  resultModal.classList.remove('hidden');
+  modalBackground.classList.remove('hidden');
   // clear user text
-  display.innerHTML = "";
+  display.innerHTML = '';
   // make it inactive
-  display.classList.add("inactive");
+  display.classList.add('inactive');
   // show result
   resultModal.innerHTML += `
     <h1>Finished!</h1>
@@ -95,13 +95,13 @@ const gameOver = () => {
   // restart everything
   startTime = null;
   errorCount = 0;
-  userText = "";
-  display.classList.add("inactive");
+  userText = '';
+  display.classList.add('inactive');
 };
 
 const closeModal = () => {
-  modalBackground.classList.toggle("hidden");
-  resultModal.classList.toggle("hidden");
+  modalBackground.classList.toggle('hidden');
+  resultModal.classList.toggle('hidden');
 };
 
 const start = () => {
@@ -109,17 +109,17 @@ const start = () => {
   if (startTime) return;
 
   let count = 3;
-  countdownOverlay.style.display = "flex";
+  countdownOverlay.style.display = 'flex';
 
   const startCountdown = setInterval(() => {
     countdownOverlay.innerHTML = `<h1>${count}</h1>`;
 
     // finished timer
-    if (count == 0) {
+    if (count === 0) {
       // -------------- START TYPING -----------------
-      document.addEventListener("keydown", typeController);
-      countdownOverlay.style.display = "none";
-      display.classList.remove("inactive");
+      document.addEventListener('keydown', typeController);
+      countdownOverlay.style.display = 'none';
+      display.classList.remove('inactive');
 
       clearInterval(startCountdown);
       startTime = new Date().getTime();
@@ -129,20 +129,17 @@ const start = () => {
 };
 
 // START Countdown
-startBtn.addEventListener("click",function(){
-  start();
-  displayHistory();
-
-});
+startBtn.addEventListener('click', start);
 
 // If history exists, show it
-
+displayHistory();
 
 // Show typing time spent
 setInterval(() => {
   const currentTime = new Date().getTime();
   const timeSpent = Math.floor((currentTime - startTime) / 1000);
 
-
-  document.getElementById("show-time").innerHTML = `${startTime ? timeSpent : 0} seconds`;
+  document.getElementById('show-time').innerHTML = `${
+    startTime ? timeSpent : 0
+  } seconds`;
 }, 1000);
