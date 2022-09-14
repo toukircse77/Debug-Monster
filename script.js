@@ -124,10 +124,14 @@ const start = () => {
 };
 
 // START Countdown
-startBtn.addEventListener("click", start);
+startBtn.addEventListener("click",function(){
+  start();
+  displayHistory();
+
+});
 
 // If history exists, show it
-displayHistory();
+
 
 // Show typing time spent
 setInterval(() => {
