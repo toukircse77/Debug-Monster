@@ -194,3 +194,18 @@ button {
     flex-direction: column;
   }
 }
+@media only screen and (max-width: 540px) {
+  #histories {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  .box-container {
+    padding: 0 20px;
+    width: 100%;
+  }
+  .card {
+    flex-direction: column;
+  }
+}
