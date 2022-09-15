@@ -5,10 +5,13 @@
 }
 
 body {
-  background-image: url('./bg.png');
+  background-image: url("./bg.png");
   background-size: cover;
   background-position: left top;
-  font-family: 'Zilla Slab', serif;
+  font-family: "Zilla Slab", serif;
+}
+.blog {
+  text-decoration: none;
 }
 
 .box-container {
@@ -61,8 +64,21 @@ body {
   color: white;
   display: none;
 }
-
-#show-time {
+#result {
+  position: fixed;
+  top: 50%; 
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 250px;
+  width: 400px;
+  background-color: #171717;
+  border-radius: 15px;
+  border: 2px solid #9dffad;
+  color: white;
+  text-align: center;
+  padding: 2rem;
+}
+#show-time{
   text-align: center;
   color: white;
   margin: 10px 0;
@@ -129,8 +145,9 @@ button {
 }
 
 #histories {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
   justify-content: space-around;
 }
 
@@ -166,21 +183,6 @@ button {
   width: 100%;
   position: fixed;
   top: 0;
-}
-
-#result {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  height: 250px;
-  width: 400px;
-  background-color: #171717;
-  border-radius: 15px;
-  border: 2px solid #9dffad;
-  color: white;
-  text-align: center;
-  padding: 2rem;
 }
 
 @media only screen and (max-width: 700px) {
