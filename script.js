@@ -46,8 +46,9 @@ const typeController = (e) => {
     display.innerHTML += `<span class="green">${
       newLetter === ' ' ? '▪' : newLetter
     }</span>`;
-  } else {
-    errorCount++;
+  }
+   else {
+    errorCount++; 
     display.innerHTML += `<span class="red">${
       newLetter === ' ' ? '▪' : newLetter
     }</span>`;
@@ -129,10 +130,13 @@ const start = () => {
 };
 
 // START Countdown
-startBtn.addEventListener('click', start);
+startBtn.addEventListener('click',function(){
+start();
+displayHistory();
+});
 
 // If history exists, show it
-displayHistory();
+
 
 // Show typing time spent
 setInterval(() => {
@@ -143,3 +147,7 @@ setInterval(() => {
     startTime ? timeSpent : 0
   } seconds`;
 }, 1000);
+
+
+
+
